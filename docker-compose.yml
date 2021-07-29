@@ -1,0 +1,20 @@
+version: "2.1"
+services:
+  webtop:
+    image: ghcr.io/linuxserver/webtop:ubuntu-kde
+    container_name: webtop
+    privileged: true #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Makassar
+      - SUBFOLDER=/ #optional
+    volumes:
+      - /home/fbihansip/webtop/config:/config
+      - /var/run/docker.sock:/var/run/docker.sock #optional
+    ports:
+      - 3000:3000
+    shm_size: "3gb" #optional
+    restart: unless-stopped
+    env_file: 
+        - .env
